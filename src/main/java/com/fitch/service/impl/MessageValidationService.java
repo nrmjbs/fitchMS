@@ -1,0 +1,92 @@
+package com.fitch.service.impl;
+
+import java.util.Objects;
+
+import javax.inject.Named;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fitch.dto.MessageDto;
+import com.fitch.enums.InputValidationErrorType;
+import com.fitch.enums.MessagePriority;
+import com.fitch.enums.MessageType;
+import com.fitch.exception.InvalidInputException;
+import com.fitch.exception.MissingInputException;
+import com.fitch.service.IMessageValidationService;
+
+@Named
+public class MessageValidationService implements IMessageValidationService {
+
+	@Override
+	public void validateMessageForRequiredAttributes(MessageDto message) {
+
+		Objects.requireNonNull(message, InputValidationErrorType.MESSAGE_CANNOT_BE_EMPTY.getText());
+
+		validateMessageTextNotBlank(message.getMessageText());
+
+		validateMessageType(message.getMessageType());
+
+		validateMessagePrioritySupported(message.getMessagePriority());
+
+	}
+
+	@Override
+	public void validateMessageType(String messageType) {
+
+		validateMessageTypeNotBlank(messageType);
+
+		validateMessageTypeSupported(messageType);
+
+	}
+
+	private void validateMessageTextNotBlank(String messageText) {
+
+		if (StringUtils.isBlank(messageText)) {
+
+			throw new MissingInputException(InputValidationErrorType.MESSAGE_TEXT_CANNOT_BE_EMPTY.getText());
+
+		}
+
+	}
+
+	private void validateMessageTypeNotBlank(String messageType) {
+
+		if (StringUtils.isBlank(messageType)) {
+
+			throw new MissingInputException(InputValidationErrorType.MESSAGE_TYPE_CANNOT_BE_EMPTY.getText());
+
+		}
+
+	}
+
+	private void validateMessageTypeSupported(String messageType) {
+
+		try {
+
+			MessageType.valueOf(messageType);
+
+		} catch (IllegalArgumentException iae) {
+
+			throw new InvalidInputException(
+					String.format(InputValidationErrorType.MESSAGE_TYPE_NOT_SUPPORTED.getText(), messageType));
+
+		}
+
+	}
+
+	private void validateMessagePrioritySupported(int priorityCode) {
+
+		MessagePriority messagePriority = MessagePriority.getByCode(priorityCode);
+
+		if (messagePriority == null) {
+
+			throw new InvalidInputException(
+					String.format(
+							InputValidationErrorType.MESSAGE_PRIORITY_NOT_SUPPORTED.getText(),
+							priorityCode));
+
+		}
+
+	}
+
+}

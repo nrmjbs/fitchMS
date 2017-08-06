@@ -1,0 +1,15 @@
+package com.fitch;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringBootFitchApplication {
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(SpringBootFitchApplication.class, args);
+
+	}
+
+}
