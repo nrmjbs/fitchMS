@@ -10,7 +10,7 @@ public enum MessagePriority {
 
 	LOWEST(3);
 
-	int priorityCode;
+	private int priorityCode;
 
 	private MessagePriority(int priorityCode) {
 

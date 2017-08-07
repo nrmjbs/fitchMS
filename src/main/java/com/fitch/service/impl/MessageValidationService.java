@@ -7,7 +7,7 @@ import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fitch.dto.MessageDto;
-import com.fitch.enums.InputValidationErrorType;
+import com.fitch.enums.ValidationErrorType;
 import com.fitch.enums.MessagePriority;
 import com.fitch.enums.MessageType;
 import com.fitch.exception.InvalidInputException;
@@ -20,7 +20,7 @@ public class MessageValidationService implements IMessageValidationService {
 	@Override
 	public void validateMessageForRequiredAttributes(MessageDto message) {
 
-		Objects.requireNonNull(message, InputValidationErrorType.MESSAGE_CANNOT_BE_EMPTY.getText());
+		Objects.requireNonNull(message, ValidationErrorType.MESSAGE_CANNOT_BE_NULL.getText());
 
 		validateMessageTextNotBlank(message.getMessageText());
 
@@ -43,7 +43,7 @@ public class MessageValidationService implements IMessageValidationService {
 
 		if (StringUtils.isBlank(messageText)) {
 
-			throw new MissingInputException(InputValidationErrorType.MESSAGE_TEXT_CANNOT_BE_EMPTY.getText());
+			throw new MissingInputException(ValidationErrorType.MESSAGE_TEXT_CANNOT_BE_EMPTY.getText());
 
 		}
 
@@ -53,7 +53,7 @@ public class MessageValidationService implements IMessageValidationService {
 
 		if (StringUtils.isBlank(messageType)) {
 
-			throw new MissingInputException(InputValidationErrorType.MESSAGE_TYPE_CANNOT_BE_EMPTY.getText());
+			throw new MissingInputException(ValidationErrorType.MESSAGE_TYPE_CANNOT_BE_EMPTY.getText());
 
 		}
 
@@ -68,7 +68,7 @@ public class MessageValidationService implements IMessageValidationService {
 		} catch (IllegalArgumentException iae) {
 
 			throw new InvalidInputException(
-					String.format(InputValidationErrorType.MESSAGE_TYPE_NOT_SUPPORTED.getText(), messageType));
+					String.format(ValidationErrorType.MESSAGE_TYPE_NOT_SUPPORTED.getText(), messageType));
 
 		}
 
@@ -82,7 +82,7 @@ public class MessageValidationService implements IMessageValidationService {
 
 			throw new InvalidInputException(
 					String.format(
-							InputValidationErrorType.MESSAGE_PRIORITY_NOT_SUPPORTED.getText(),
+							ValidationErrorType.MESSAGE_PRIORITY_NOT_SUPPORTED.getText(),
 							priorityCode));
 
 		}

@@ -57,7 +57,7 @@ public class SpringBootFitchApplicationTests {
 
 	////////////////////////////////////////////////////////////////////
 
-	final Map<Integer, MessageDto> responseMessageDtoMap = new HashMap<>();
+	private final Map<Integer, MessageDto> responseMessageDtoMap = new HashMap<>();
 
 	////////////////////////////////////////////////////////////////////
 

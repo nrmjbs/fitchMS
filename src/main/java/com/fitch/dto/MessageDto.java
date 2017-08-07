@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @XmlRootElement
-public class MessageDto implements Serializable, Comparable<MessageDto> {
+public final class MessageDto implements Serializable, Comparable<MessageDto> {
 
 	private static final long serialVersionUID = -7597489593165521628L;
 
@@ -50,21 +50,9 @@ public class MessageDto implements Serializable, Comparable<MessageDto> {
 
 	}
 
-	public void setMessageText(String messageText) {
-
-		this.messageText = messageText;
-
-	}
-
 	public String getMessageType() {
 
 		return messageType;
-
-	}
-
-	public void setMessageType(String messageType) {
-
-		this.messageType = messageType;
 
 	}
 
@@ -74,21 +62,9 @@ public class MessageDto implements Serializable, Comparable<MessageDto> {
 
 	}
 
-	public void setMessagePriority(int messagePriority) {
-
-		this.messagePriority = messagePriority;
-
-	}
-
 	public String getMessageCreateDateTime() {
 
 		return messageCreateDateTime;
-
-	}
-
-	public void setMessageCreateDateTime(String messageCreationDate) {
-
-		this.messageCreateDateTime = messageCreationDate;
 
 	}
 

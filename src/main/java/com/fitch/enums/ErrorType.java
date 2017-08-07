@@ -14,7 +14,7 @@ public enum ErrorType {
 
 	MESSAGE_TYPE_NON_NULL("Message type cannot be null.");
 
-	String text;
+	private String text;
 
 	private ErrorType(String text) {
 

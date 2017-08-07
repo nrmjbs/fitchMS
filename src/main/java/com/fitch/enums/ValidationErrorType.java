@@ -1,8 +1,12 @@
 package com.fitch.enums;
 
-public enum InputValidationErrorType {
+public enum ValidationErrorType {
 
-	MESSAGE_CANNOT_BE_EMPTY("Message cannot be empty."),
+	MESSAGE_CANNOT_BE_NULL("Message cannot be null."),
+
+	MESSAGE_WRAPPER_CANNOT_BE_NULL("Message wrapper cannot be null."),
+
+	MESSAGE_CALLBACK_CANNOT_BE_NULL("Message callback cannot be null."),
 
 	MESSAGE_TEXT_CANNOT_BE_EMPTY("Message text cannot be empty."),
 
@@ -14,9 +18,9 @@ public enum InputValidationErrorType {
 
 	MESSAGE_PRIORITY_NOT_SUPPORTED("Message priority %d not supported.");
 
-	String text;
+	private String text;
 
-	private InputValidationErrorType(String text) {
+	private ValidationErrorType(String text) {
 
 		this.text = text;
 

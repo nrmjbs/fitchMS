@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -17,7 +18,7 @@ import com.fitch.enums.MessagePriority;
 import com.fitch.enums.MessageType;
 
 @Entity
-public class Message implements java.io.Serializable {
+public class Message implements java.io.Serializable, Comparable<Message> {
 
 	private static final long serialVersionUID = -7663519385433037470L;
 
@@ -150,6 +151,18 @@ public class Message implements java.io.Serializable {
 										.append("messageCreateDateTime", messageCreateDateTime)
 										.append("messageText", messageText)
 										.toString();
+
+	}
+
+	@Override
+	public int compareTo(Message message) {
+
+		CompareToBuilder compareToBuilder = new CompareToBuilder();
+
+		return compareToBuilder	.append(messageType, message.getMessageType())
+								.append(messagePriority, message.getMessagePriority())
+								.append(messageCreateDateTime, message.getMessageCreateDateTime())
+								.toComparison();
 
 	}
 
