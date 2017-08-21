@@ -26,6 +26,16 @@
 - Assumptions
 	* Message priority order from highest to lowest [1,2,3]
 	* Messages with same type, priority and create dateTime are duplicate and not allowed to be added
+	* Messages are added first before getting fetched by message type. This is to allow the showing of messages returned in the
+		order of priority and create date/time. Otherwise messages with lower priority will be fetched first if higher priority 		messages are added later and a get occurred in between.
+
+
+- Additional Notes
+	* SOLID design patterns are used where required.
+		* Single responsibility is assigned to a class so that other classes and their functionality is not modified/impacted when the behavior in this class is modified.
+		* A class is open for extension using has-a relationship but closed for modification.
+		* Coding to interfaces is in practice through out the program.
+		* Parent reference can be substituted for child at any time without breaking the compilation unit.
 
 
 # Fitch Message Micro Service (Implementation 2)
